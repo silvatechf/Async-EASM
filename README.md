@@ -15,7 +15,7 @@ Traditional reconnaissance tools often trigger Web Application Firewalls (WAFs),
 ## 🚀 Usage
 
 ### 1. Installation
-\\\ash
+\\\bash
 # Create an isolated virtual environment
 python -m venv easm_env
 source easm_env/bin/activate  # On Windows: .\easm_env\Scripts\activate
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 \\\
 
 ### 2. Execution Pipeline
-\\\ash
+\\\bash
 # Step 1: Run the passive/active reconnaissance engine
 python engine_easm.py targets.txt
 
