@@ -6,7 +6,7 @@ An enterprise-grade, asynchronous External Attack Surface Management (EASM) engi
 Traditional reconnaissance tools often trigger Web Application Firewalls (WAFs), crash under network instability, and dump raw data that requires hours of manual triage. This pipeline automates the discovery, filters out dead hosts, extracts context (Tech Stack, Shadow IT), and safely orchestrates vulnerability scanning.
 
 ## ⚙️ Core Architecture & Features
-- **Asynchronous Engine:** Utilizes \iohttp\ and \syncio\ to process hundreds of targets concurrently without CPU blocking.
+- **Asynchronous Engine:** Utilizes \iohttp\ and \syncio\ to process hundreds of targets concurrently without CPU blocking.
 - **Resilient Networking:** Implements Exponential Backoff and User-Agent rotation to survive rate-limits, packet loss, and basic WAF protections.
 - **Defensive Heuristics:** Automatically detects Directory Listing, exposed test environments (Shadow IT), and missing security headers.
 - **Safe Orchestration:** Parses JSON intelligence to dynamically adjust the aggressiveness of vulnerability scanners (like ProjectDiscovery's Nuclei) based on WAF presence.
