@@ -1,4 +1,4 @@
-﻿# Async EASM Pipeline & Vulnerability Orchestrator 🛡️
+﻿# Async EASM Pipeline & Vulnerability Orchestrator 
 
 An enterprise-grade, asynchronous External Attack Surface Management (EASM) engine built in Python. Designed to solve the pain of noisy reconnaissance, false positives, and brittle shell scripts by providing a resilient, concurrent pipeline for Red Teams and Blue Teams.
 
@@ -15,23 +15,30 @@ Traditional reconnaissance tools often trigger Web Application Firewalls (WAFs),
 ## 🚀 Usage
 
 ### 1. Installation
-\\\bash
-# Create an isolated virtual environment
+
+### Create an isolated virtual environment
+```sh
 python -m venv easm_env
 source easm_env/bin/activate  # On Windows: .\easm_env\Scripts\activate
+```
 
-# Install async dependencies
+
+### Install async dependencies
+```sh
 pip install -r requirements.txt
-\\\
 
+```
 ### 2. Execution Pipeline
-\\\bash
-# Step 1: Run the passive/active reconnaissance engine
-python engine_easm.py targets.txt
 
-# Step 2: Orchestrate vulnerability scanning based on contextual intelligence
+### Step 1: Run the passive/active reconnaissance engine
+```sh
+python engine_easm.py targets.txt
+```
+### Step 2: Orchestrate vulnerability scanning based on contextual intelligence
+```sh
 python vuln_orchestrator.py robust_exposure_report.json
-\\\
+```
+
 
 ## ⚖️ Ethical Disclaimer & Rules of Engagement
 This toolkit is developed strictly for **educational purposes, authorized penetration testing, and defensive posture validation**. 
