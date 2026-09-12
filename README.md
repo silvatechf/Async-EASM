@@ -35,4 +35,12 @@ python vuln_orchestrator.py robust_exposure_report.json
 
 ## ⚖️ Ethical Disclaimer & Rules of Engagement
 This toolkit is developed strictly for **educational purposes, authorized penetration testing, and defensive posture validation**. 
-The developers assume no liability and are not responsible for any misuse or damage caused by this program. Never execute active scans against infrastructure without explicit, written consent from the asset owner.
+The developers assume no liability and are not responsible for any misuse or damage caused by this program. 
+
+## 🚫 Never execute active scans against infrastructure without explicit, written consent from the asset owner.
+
+
+
+
+## 👨‍💻 Author / Contact
+* **Fernando Silva** - [Connect on LinkedIn](https://www.linkedin.com/in/fernando-silva-83b155a4/)
