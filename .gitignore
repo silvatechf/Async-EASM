@@ -1,0 +1,17 @@
+# Ambientes Virtuais
+easm_env/
+venv/
+
+# Relatórios e Dados Sensíveis (Prevenção de Vazamento)
+*.json
+targets.txt
+engagements/
+
+# Binários e Executáveis
+nuclei.exe
+*.zip
+
+# Arquivos de sistema do Python
+__pycache__/
+*.pyc
+
