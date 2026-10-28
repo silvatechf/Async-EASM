@@ -38,7 +38,7 @@ class EngineEASM:
         for attempt in range(self.config.max_retries):
             try:
                 # Retorna o response sem ler o body ainda para economizar memória
-                response = await session.get(url, headers=headers, timeout=self.config.timeout_seconds, ssl=False, allow_redirects=True)
+                response = await session.get(url, headers=headers, timeout=self.config.timeout_seconds, allow_redirects=True)
                 return response
             except (aiohttp.ClientError, asyncio.TimeoutError):
                 if attempt == self.config.max_retries - 1:
@@ -120,7 +120,7 @@ async def main(target_file: str):
         targets = [line.strip() for line in f if line.strip()]
 
     # Limitador TCP em conjunto com o Semaphore para evitar esgotamento de file descriptors (ulimit)
-    conn = aiohttp.TCPConnector(limit=50, ssl=False)
+    conn = aiohttp.TCPConnector(limit=50)
     async with aiohttp.ClientSession(connector=conn) as session:
         tasks = [engine.scan_target(session, t) for t in targets]
         results = await asyncio.gather(*tasks)

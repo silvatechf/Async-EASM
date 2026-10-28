@@ -1,53 +1,60 @@
-﻿# Async EASM Pipeline & Vulnerability Orchestrator 
+# Async EASM Pipeline
 
-An enterprise-grade, asynchronous External Attack Surface Management (EASM) engine built in Python. Designed to solve the pain of noisy reconnaissance, false positives, and brittle shell scripts by providing a resilient, concurrent pipeline for Red Teams and Blue Teams.
+A Python learning project for asynchronous external attack-surface discovery. It performs HTTP requests against a supplied target list, records basic response and header observations, and can pass a JSON report to an optional Nuclei orchestration step.
 
-## 🎯 The Problem It Solves
-Traditional reconnaissance tools often trigger Web Application Firewalls (WAFs), crash under network instability, and dump raw data that requires hours of manual triage. This pipeline automates the discovery, filters out dead hosts, extracts context (Tech Stack, Shadow IT), and safely orchestrates vulnerability scanning.
+> **Authorized use only.** Run active checks only against assets you own or have explicit written permission to assess. Start with a small lab target list. This project is an educational prototype, not a production EASM platform or a comprehensive vulnerability scanner.
 
-## ⚙️ Core Architecture & Features
-- **Asynchronous Engine:** Utilizes \iohttp\ and \syncio\ to process hundreds of targets concurrently without CPU blocking.
-- **Resilient Networking:** Implements Exponential Backoff and User-Agent rotation to survive rate-limits, packet loss, and basic WAF protections.
-- **Defensive Heuristics:** Automatically detects Directory Listing, exposed test environments (Shadow IT), and missing security headers.
-- **Safe Orchestration:** Parses JSON intelligence to dynamically adjust the aggressiveness of vulnerability scanners (like ProjectDiscovery's Nuclei) based on WAF presence.
-- **Secure Subprocessing:** Eliminates Command Injection vulnerabilities by executing external binaries via strict array parameterization.
+## Capabilities
 
-## 🚀 Usage
+- Asynchronous HTTP requests with a configurable concurrency limit and retry attempts.
+- Basic response-title and security-header heuristics.
+- JSON output for reachable targets.
+- Optional Nuclei invocation using structured subprocess arguments and a limited tag set.
 
-### 1. Installation
+## Requirements
 
-### Create an isolated virtual environment
-```sh
-python -m venv easm_env
-source easm_env/bin/activate  # On Windows: .\easm_env\Scripts\activate
+- Python 3.10 or newer recommended.
+- Python dependency: `aiohttp` (see `requirements.txt`).
+- Optional for the second stage: ProjectDiscovery Nuclei installed and available on `PATH`.
+
+## Run locally (Windows PowerShell)
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
+Create a text file such as `targets.txt` containing one authorized hostname or URL per line. Use only systems within your approved scope.
 
-### Install async dependencies
-```sh
-pip install -r requirements.txt
-
-```
-### 2. Execution Pipeline
-
-### Step 1: Run the passive/active reconnaissance engine
-```sh
+```powershell
 python engine_easm.py targets.txt
 ```
-### Step 2: Orchestrate vulnerability scanning based on contextual intelligence
-```sh
+
+The first stage writes `robust_exposure_report.json` in the current directory. To run the optional second stage:
+
+```powershell
 python vuln_orchestrator.py robust_exposure_report.json
 ```
 
+The second stage requires Nuclei separately. Review the tool's output and options before use; a successful process exit does not mean a target is safe or vulnerable.
 
-## ⚖️ Ethical Disclaimer & Rules of Engagement
-This toolkit is developed strictly for **educational purposes, authorized penetration testing, and defensive posture validation**. 
-The developers assume no liability and are not responsible for any misuse or damage caused by this program. 
+## Important limitations
 
-## 🚫 Never execute active scans against infrastructure without explicit, written consent from the asset owner.
+- Findings are simple heuristics, not proof of vulnerabilities. A missing HSTS header or a title containing `admin` is not, by itself, a confirmed security issue.
+- The implementation does not provide DNS asset discovery, authenticated scanning, durable storage, a user interface, or comprehensive WAF detection.
+- Target validation, redirect behavior, output naming, and explicit target-scope enforcement need further hardening before broader use.
+- TLS certificate verification is enabled by default. Do not disable it to work around certificate errors; investigate and fix the trust configuration instead.
+- Do not use results as a substitute for manual validation or an authorized security assessment.
 
+## Project status
 
+Learning lab; automated tests and CI are not currently included. Run against a controlled lab and validate behavior before relying on any result.
 
+## License
 
-## 👨‍💻 Author / Contact
-* **Fernando Silva** - [Connect on LinkedIn](https://www.linkedin.com/in/fernando-silva-83b155a4/)
+See `LICENSE.md` for the repository's license.
+
+## Contact
+
+[LinkedIn](https://www.linkedin.com/in/fernando-silva-83b155a4/)
